@@ -1,0 +1,6 @@
+Key: 6ee702c5c14d75695479a26b41a8cc93fd969ec8aaa15dc68ddc6f4e91de4e
+Nonce: ad69fe23da2c69bfe5d518d6
+Ciphertext: 8ac65b24b936f98cd41fcc6629e9bdd5
+Ciphertext length: 10
+Plaintext length: 10
+Decrypted text: This is ChaCha20

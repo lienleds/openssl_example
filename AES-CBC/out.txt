@@ -1,0 +1,4 @@
+Key: d59d4150d72fec0806adccb8c5c44e7
+IV: 55a39b1019eb23ab5e6704297a814f
+Ciphertext: 2a66b4254b838ea8fbb6aaae42967a2b80ab2a9e2f811ff691483bb02b6bc14a
+Decrypted: This is AES CBC HMAC

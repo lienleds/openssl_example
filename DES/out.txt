@@ -1,0 +1,6 @@
+Key: 133457799bbcdff1
+IV: 1234567890abcdef
+Ciphertext: 10f0758a02bd947f8f809c298fc2c0
+Ciphertext length: 10
+Plaintext length: b
+Decrypted text: This is DES
