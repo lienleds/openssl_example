@@ -1,0 +1,3 @@
+Signature (hex): 3044220441c4b51322a254fc1dd19bab14ee69bc56a333ae36bc7dc56752f425296b7822066a837b3c97cea263ebd66fdcac66fa5596b6722bb8346b4b254bc2976dea
+Signature is valid!
+[Invalid case] Signature is invalid! (expected)
