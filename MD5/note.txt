@@ -1,0 +1,3 @@
+Input: Hello, MD5!
+MD5_DIGEST_LENGTH: 16
+MD5: 383e139e64e5f46de9d03ba3695da2d8
