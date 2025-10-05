@@ -15,9 +15,34 @@ int main()
     // Key and nonce for ChaCha20
     unsigned char key[32];
     unsigned char nonce[12];
-    // Generate random key and nonce (or you can set static values for testing)
-    if (1 != RAND_bytes(key, sizeof(key))) handleErrors();
-    if (1 != RAND_bytes(nonce, sizeof(nonce))) handleErrors();
+    // Load key from file
+    FILE* kf = fopen("chacha20_key.bin", "rb");
+    if (!kf)
+    {
+        std::cerr << "Error: Cannot open chacha20_key.bin for reading!" << std::endl;
+        return 1;
+    }
+    if (fread(key, 1, sizeof(key), kf) != sizeof(key))
+    {
+        std::cerr << "Error: Failed to read ChaCha20 key from file!" << std::endl;
+        fclose(kf);
+        return 1;
+    }
+    fclose(kf);
+    // Load nonce from file
+    FILE* nf = fopen("chacha20_nonce.bin", "rb");
+    if (!nf)
+    {
+        std::cerr << "Error: Cannot open chacha20_nonce.bin for reading!" << std::endl;
+        return 1;
+    }
+    if (fread(nonce, 1, sizeof(nonce), nf) != sizeof(nonce))
+    {
+        std::cerr << "Error: Failed to read ChaCha20 nonce from file!" << std::endl;
+        fclose(nf);
+        return 1;
+    }
+    fclose(nf);
 
     // Data
     const char* plaintext = "This is ChaCha20";
