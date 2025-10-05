@@ -1,0 +1,2 @@
+This is a sample file for SHA3-224 hash testing.
+You can change this content to see different hash results.
