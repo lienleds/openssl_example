@@ -9,8 +9,38 @@ int main() {
     const int iv_len = 8;   // 3DES block size is 8 bytes
     unsigned char key[key_len];
     unsigned char iv[iv_len];
-    RAND_bytes(key, key_len);
-    RAND_bytes(iv, iv_len);
+    
+    // Load key from file
+    FILE* key_file = fopen("des3_key.bin", "rb");
+    if (!key_file)
+    {
+        std::cerr << "Error: Cannot open des3_key.bin for reading." << std::endl;
+        return 1;
+    }
+
+    if (fread(key, 1, key_len, key_file) != key_len)
+    {
+        std::cerr << "Error: Failed to read 3DES key from file." << std::endl;
+        fclose(key_file);
+        return 1;
+    }
+    fclose(key_file);
+
+    // Load IV from file
+    FILE* iv_file = fopen("des3_iv.bin", "rb");
+    if (!iv_file)
+    {
+        std::cerr << "Error: Cannot open des3_iv.bin for reading." << std::endl;
+        return 1;
+    }
+
+    if (fread(iv, 1, iv_len, iv_file) != iv_len)
+    {
+        std::cerr << "Error: Failed to read 3DES IV from file." << std::endl;
+        fclose(iv_file);
+        return 1;
+    }
+    fclose(iv_file);
 
     // Plaintext
     const char* plaintext = "OpenSSL 3DES Example!";
