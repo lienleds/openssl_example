@@ -13,7 +13,34 @@ int main()
     // Key and IV
     unsigned char key[16]; // 128-bit key for AES
     unsigned char iv[16];  // 128-bit IV for CBC
-    if (!RAND_bytes(key, sizeof(key)) || !RAND_bytes(iv, sizeof(iv))) handleErrors();
+    // Load key from file
+    FILE* kf = fopen("aes_key.bin", "rb");
+    if (!kf)
+    {
+        std::cerr << "Error: Cannot open aes_key.bin for reading!" << std::endl;
+        return 1;
+    }
+    if (fread(key, 1, sizeof(key), kf) != sizeof(key))
+    {
+        std::cerr << "Error: Failed to read AES key from file!" << std::endl;
+        fclose(kf);
+        return 1;
+    }
+    fclose(kf);
+    // Load IV from file
+    FILE* ivf = fopen("aes_iv.bin", "rb");
+    if (!ivf)
+    {
+        std::cerr << "Error: Cannot open aes_iv.bin for reading!" << std::endl;
+        return 1;
+    }
+    if (fread(iv, 1, sizeof(iv), ivf) != sizeof(iv))
+    {
+        std::cerr << "Error: Failed to read AES IV from file!" << std::endl;
+        fclose(ivf);
+        return 1;
+    }
+    fclose(ivf);
 
     // Data
     const char* plaintext = "This is AES CBC HMAC";
