@@ -20,9 +20,26 @@ int main()
         return 1;
     }
 
-    // Key and IV (static, to avoid weak key/parity issues)
-    unsigned char key[8] = {0x13, 0x34, 0x57, 0x79, 0x9B, 0xBC, 0xDF, 0xF1};
-    unsigned char iv[8]  = {0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF};
+
+    // Load key and IV from files
+    unsigned char key[8];
+    unsigned char iv[8];
+    FILE* fkey = fopen("des_key.bin", "rb");
+    FILE* fiv = fopen("des_iv.bin", "rb");
+    if (!fkey || !fiv)
+    {
+        std::cerr << "Cannot open des_key.bin or des_iv.bin!\n";
+        return 1;
+    }
+    if (fread(key, 1, sizeof(key), fkey) != sizeof(key) || fread(iv, 1, sizeof(iv), fiv) != sizeof(iv))
+    {
+        std::cerr << "Failed to read key or IV from file!\n";
+        fclose(fkey);
+        fclose(fiv);
+        return 1;
+    }
+    fclose(fkey);
+    fclose(fiv);
 
     // Data
     const char* plaintext = "This is DES";
