@@ -1,0 +1,13 @@
+=== Blowfish Encryption/Decryption Example ===
+Original text: This is Blowfish encryption example!
+Text length: 36 bytes
+
+Key (hex): 6390cecbff6010e40de815de4b587060
+IV (hex): b658b4c3f89919df
+Ciphertext (hex): 242e33280551899ed011687e610e77ae0739be2b70cdaa9ced61b15f26b842df0927729137a80907
+Ciphertext length: 40 bytes
+
+Decrypted text: This is Blowfish encryption example!
+Decrypted length: 36 bytes
+
+✓ Encryption/Decryption successful!

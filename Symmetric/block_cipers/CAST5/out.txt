@@ -1,0 +1,86 @@
+=== CAST5-CBC Multi-Block Encryption Example ===
+Original text: This is a comprehensive CAST5 encryption example that demonstrates how CAST5 handles text longer than its 64-bit block size. CAST5, also known as CAST-128, uses 64-bit blocks and variable-length keys from 40 to 128 bits. When plaintext exceeds one block, it gets divided into multiple 8-byte blocks. The CBC mode chains these blocks together by XORing each plaintext block with the previous ciphertext block before encryption, creating secure dependencies!
+Text length: 456 bytes
+
+=== Block Analysis ===
+CAST5 block size: 64 bits (8 bytes)
+Number of complete blocks: 57
+Remaining bytes in last block: 0
+Total blocks after padding: 57
+Expected ciphertext length: 456 bytes
+
+Key (hex): 98d52a17f4a360883bc3f9d2a68d8e95
+IV (hex): 0d08e007f7f2f0e4
+Ciphertext (hex): 1dcfd184e49a699a5318698a1b3b3b4980b6d81252cbdaf3280753fbc4e0493f
+                  cc76b9af1b851bf43a88d8f901ef68a95cb40e7ab9c1e29cd8bba4779b0ca3b1
+                  97cb91cf0f6f47b0081d1390f9fbb2eb2591136dbb32b049fb5c425091ed848d
+                  aecbe774cc68bd61c3ff37003852bcffcc1475979cbf56276f83257321a11b21
+                  0d358516e9fe148799372635a798520039b13387661a2cab2e67722f1259989e
+                  dec2cf15bf5cc534cc397b79440f9e042d97e04468c481a6bfa0b8e9f6c8d333
+                  832a8a6d060471d724a67779cff7fd008b64d199afef7428a987266460826024
+                  115037b5bc3c43857e2f69fafb4f13e680292e13bc87881f6b4b12fc6d45b124
+                  7bae7aff704dbcc7597be65371a81b0e9ddd7f820538b374311c554c4c446f75
+                  0506ac5874fb512b79c726c3285ee4dc8e46ac3272cba2e3f05e077eb77d377b
+                  d3e64dc63de0bac31936c28cfba93f9c900bf55baa4ef821d717681631d0ce9f
+                  5f8d83f77e2b9f4a4d61a26d4ab09f88ef7c2fe2ad36b6ebcc164a2b2a62a236
+                  a4eb179022f26bf1473d363f9fc0fea3a014dbc59dcb6fe05b93f73f5cfba106
+                  4e22e3fc7d9409f39891adf6b21c404901fd7fefbc0ec9d041c0d569325be79c
+                  677a7c93466ab7d636d79efc5481e67e
+Actual ciphertext length: 464 bytes (58 blocks)
+
+Decrypted text: This is a comprehensive CAST5 encryption example that demonstrates how CAST5 handles text longer than its 64-bit block size. CAST5, also known as CAST-128, uses 64-bit blocks and variable-length keys from 40 to 128 bits. When plaintext exceeds one block, it gets divided into multiple 8-byte blocks. The CBC mode chains these blocks together by XORing each plaintext block with the previous ciphertext block before encryption, creating secure dependencies!
+Decrypted length: 456 bytes
+
+✓ Encryption/Decryption successful!
+
+=== Detailed Block and Padding Explanation ===
+
+Block Breakdown (first 6 blocks shown):
+Block 01 [bytes 000-007]: "This is "
+Block 02 [bytes 008-015]: "a compre"
+Block 03 [bytes 016-023]: "hensive "
+Block 04 [bytes 024-031]: "CAST5 en"
+Block 05 [bytes 032-039]: "cryption"
+Block 06 [bytes 040-047]: " example"
+... (51 more blocks)
+Block 57 [bytes 448-455]: "" + 8 padding bytes
+
+=== PKCS#7 Padding Explanation ===
+• Block size: 8 bytes (64 bits)
+• Text length: 456 bytes
+• Bytes in last block: 0 bytes
+• Padding needed: 8 bytes
+• PKCS#7 padding value: 0x08 (repeated 8 times)
+
+=== PKCS#7 Padding Demonstration ===
+Last block content (before padding):
+Bytes: 
+Hex:   
+
+Padding added:
+Padding bytes needed: 8
+Padding value: 0x08 (decimal 8)
+
+Complete last block after padding:
+Position: 00 01 02 03 04 05 06 07 
+Content:  08 08 08 08 08 08 08 08 
+Hex:      08 08 08 08 08 08 08 08 
+
+=== CBC Mode Chaining ===
+• Block 1: PlainBlock₁ ⊕ IV → Encrypt → CipherBlock₁
+• Block 2: PlainBlock₂ ⊕ CipherBlock₁ → Encrypt → CipherBlock₂
+• Block 3: PlainBlock₃ ⊕ CipherBlock₂ → Encrypt → CipherBlock₃
+• ... and so on for all 57 blocks
+
+=== Key Observations ===
+• CAST5 uses 64-bit (8-byte) blocks, smaller than AES/Camellia (128-bit)
+• Text longer than 8 bytes is automatically split into multiple blocks
+• Each 8-byte block is encrypted separately but chained together in CBC mode
+• PKCS#7 padding ensures the last block is exactly 8 bytes
+• Ciphertext length is always a multiple of the block size (8 bytes)
+• Original text length: 456 bytes → Encrypted length: 464 bytes
+
+=== CAST5 vs Other Algorithms ===
+• CAST5 block size: 64 bits  | AES/Camellia: 128 bits | Blowfish: 64 bits
+• More blocks needed for same text due to smaller block size
+• Legacy algorithm, requires legacy provider in modern OpenSSL

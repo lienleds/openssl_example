@@ -1,0 +1,112 @@
+=== SEED-CBC Multi-Block Encryption Example ===
+Original text: This is a comprehensive SEED encryption example demonstrating the Korean cryptographic algorithm KISA-SEED-128. SEED was developed by the Korea Information Security Agency (KISA) in 1998 as a national standard. The algorithm uses 128-bit blocks and 128-bit keys with a Feistel structure operating over 16 rounds. SEED was designed to replace DES in Korean applications, emphasizing security and efficiency. It became ISO/IEC 18033-3 in 2005, demonstrating Korean cryptographic expertise!
+Text length: 487 bytes
+
+=== Block Analysis ===
+SEED block size: 128 bits (16 bytes)
+Number of complete blocks: 30
+Remaining bytes in last block: 7
+Total blocks after padding: 31
+Expected ciphertext length: 496 bytes
+
+Key (hex): c9c20ac46bee3ad6f3a970924e92b820
+IV (hex): 3f87ee077f31c3486febda5dcd17ab96
+Ciphertext (hex): d01511c1aa70551ab7d3d746f5059a7ce1cfb7a4ed756ed85e03d42ad464ae06
+                  682b7ae544406d61886ad10651e9ce4d980af16cd631a9c97285c548edaed744
+                  e191acde5870b4449df42a2153ce98ba38fd70aa73822e7084d1e47cb68ddded
+                  fe9ee569ca0d44e838cfd23a64f9f084c27d2ed4100c74cfa89f0967fb0df705
+                  ff3bea4094daafea9bbfd8a2931cc675f9edae0674925565fe769e3fc7b22f9e
+                  e68e1186e22ab7abd3c3b1229be96329f53dc20936dfc0c4fecc1f4cbbb051ad
+                  32f1c782d6ee7681f6b3fb3aa943f75eab1238253f6c3562122524b174f52c0e
+                  1e1a5bec6b74cb8c68e26ee282d0bfea567eaf84360e0f0f4ded8bb81bc63cb7
+                  13ed147d586467c89dfd24dd8215f0d4371fe91149ce97603b8814292351d5df
+                  7241b22df174e8a466df0bb09270d42ec8f30799824538cdd66d913f9086c3b0
+                  173a61c93c6f9aa2617127468819399b53ef28101e7f768d659af78bedf3ee73
+                  39ec2316799488805b404addcb3badee5a2366a88f2ab000037d800608009fd9
+                  da05e59e882c2937aff2ac0f9622d1094a0dcb92d9542e9f61ff37862f9d326b
+                  630796c6de812d24ee0d133e516d03223445a4c54aefe74e194139f9f2bebc86
+                  d1268d0a5dde938f86d6ba7b7f8c1f5074f6810e43983930b4b64a6a7c581f32
+                  8b37a9a565c82523a25157050e6e9dc6
+Actual ciphertext length: 496 bytes (31 blocks)
+
+Decrypted text: This is a comprehensive SEED encryption example demonstrating the Korean cryptographic algorithm KISA-SEED-128. SEED was developed by the Korea Information Security Agency (KISA) in 1998 as a national standard. The algorithm uses 128-bit blocks and 128-bit keys with a Feistel structure operating over 16 rounds. SEED was designed to replace DES in Korean applications, emphasizing security and efficiency. It became ISO/IEC 18033-3 in 2005, demonstrating Korean cryptographic expertise!
+Decrypted length: 487 bytes
+
+✓ Encryption/Decryption successful!
+
+=== Detailed Block and Padding Explanation ===
+
+Block Breakdown (first 4 blocks shown):
+Block 01 [bytes 000-015]: "This is a compre"
+Block 02 [bytes 016-031]: "hensive SEED enc"
+Block 03 [bytes 032-047]: "ryption example "
+Block 04 [bytes 048-063]: "demonstrating th"
+... (27 more blocks)
+Block 31 [bytes 480-486]: "ertise!" + 9 padding bytes
+
+=== PKCS#7 Padding Explanation ===
+• Block size: 16 bytes (128 bits)
+• Text length: 487 bytes
+• Bytes in last block: 7 bytes
+• Padding needed: 9 bytes
+• PKCS#7 padding value: 0x09 (repeated 9 times)
+
+=== PKCS#7 Padding Demonstration ===
+Last block content (before padding):
+Bytes: 'e' 'r' 't' 'i' 's' 'e' '!' 
+Hex:   0x65 0x72 0x74 0x69 0x73 0x65 0x21 
+
+Padding added:
+Padding bytes needed: 9
+Padding value: 0x09 (decimal 9)
+
+Complete last block after padding:
+Position: 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 
+Content:   e  r  t  i  s  e  ! 09 09 09 09 09 09 09 09 09 
+Hex:      65 72 74 69 73 65 21 09 09 09 09 09 09 09 09 09 
+
+=== CBC Mode Chaining ===
+• Block 1: PlainBlock₁ ⊕ IV → Encrypt → CipherBlock₁
+• Block 2: PlainBlock₂ ⊕ CipherBlock₁ → Encrypt → CipherBlock₂
+• Block 3: PlainBlock₃ ⊕ CipherBlock₂ → Encrypt → CipherBlock₃
+• ... and so on for all 31 blocks
+
+=== SEED Algorithm Details ===
+• SEED uses 16 rounds of Feistel network with 128-bit blocks
+• Fixed 128-bit key length for optimal security/performance balance
+• Key schedule generates 32 subkeys (2 per round) using rotation and XOR
+• Two 8×8 S-boxes provide excellent nonlinear transformation
+• Round function uses F-function with G-function and key mixing
+• Designed for efficient implementation in both software and hardware
+
+=== Key Observations ===
+• SEED uses 128-bit (16-byte) blocks, same as AES and Camellia
+• Fixed 128-bit key provides strong security with good performance
+• Text longer than 16 bytes is automatically split into multiple blocks
+• Each 16-byte block is encrypted separately but chained together in CBC mode
+• PKCS#7 padding ensures the last block is exactly 16 bytes
+• Ciphertext length is always a multiple of the block size (16 bytes)
+• Original text length: 487 bytes → Encrypted length: 496 bytes
+
+=== Korean Cryptographic Heritage ===
+• Developed by KISA (Korea Information Security Agency) in 1998
+• First Korean-designed block cipher to achieve international recognition
+• Adopted as Korean national standard KS X 1213 in 1999
+• Became ISO/IEC 18033-3 international standard in 2005
+• Designed to replace DES in Korean government and financial systems
+• Reflects South Korea's commitment to cryptographic sovereignty
+
+=== Security Analysis ===
+• Resistant to differential cryptanalysis (max probability 2^-52)
+• Resistant to linear cryptanalysis (max bias 2^-26)
+• No known practical attacks against full 16-round SEED
+• S-boxes designed for optimal differential and linear properties
+• Key schedule prevents related-key attacks
+• Suitable for applications requiring long-term security
+
+=== International Recognition ===
+• Included in TLS cipher suites (RFC 4162)
+• Supported by various cryptographic libraries and standards
+• Used in Korean e-government and financial applications
+• Example of successful national cryptographic standard development
+• Demonstrates Korea's expertise in cryptographic algorithm design

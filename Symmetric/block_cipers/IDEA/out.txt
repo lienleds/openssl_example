@@ -1,0 +1,103 @@
+=== IDEA-CBC Multi-Block Encryption Example ===
+Original text: This is a detailed IDEA (International Data Encryption Algorithm) example that showcases how this patented Swiss algorithm handles multi-block encryption. IDEA was developed by James Massey and Xuejia Lai in 1991 and became famous for its use in Pretty Good Privacy (PGP). It uses 64-bit blocks with 128-bit keys and was considered very secure for its time. The algorithm combines different mathematical operations including XOR, addition modulo 2^16, and multiplication modulo 2^16+1 to create confusion and diffusion. While IDEA is still cryptographically strong, it has been largely replaced by AES due to patent restrictions and performance considerations!
+Text length: 660 bytes
+
+=== Block Analysis ===
+IDEA block size: 64 bits (8 bytes)
+Number of complete blocks: 82
+Remaining bytes in last block: 4
+Total blocks after padding: 83
+Expected ciphertext length: 664 bytes
+
+Key (hex): fad6a7a39445bb3f76def8a131791a8e
+IV (hex): 9660898ee00de7fd
+Ciphertext (hex): 915d55d9055f257d7a50aef68ae87e278c7207d8d3389dff08edb214b9e90604
+                  a22bf028b6220ce2cc84e5130ba83d8262b0be4e7d2008b267850457d2a4d2be
+                  1800c54839a24738da23afd343a05527f906ccc401d21beabb2eca9b6484a7c0
+                  251fafc1a23344360ce427e8e378c05ecc98c65692366ff6e54a5f73c55a3ee3
+                  165c11d86e374728f7ce9784ce3e7958f854254ba9fd846bfa2cd3b19d09a4d1
+                  02b817f06540cf0455640a7c7dfc6f0681ff5e6832d1afe264f6e8b9be8471fd
+                  dfa0b8b45cb340c095a7cb8e3a03afebddd4f0cf0ed8316d447367db78e1b541
+                  3d2bd091ab31ac8c9ad23b763273b945df7d2e722e859eb39cfa43490158ae8e
+                  76c2a6bbce0739ebfacc3f0685ccd37f5ba5e4ce07962df61554a19bb07feff5
+                  20fddd611e34198f6688db2f05a9de7a579f6013a484792bb20ffc9b2383d33b
+                  83984ad32d7466358163ac484d7481c9c7e2278e1cd3768da8f96e020f577e49
+                  15467fec98d71cae9a085dc6740b6c235128a37fe155603a9b2d23daf2ab86e7
+                  8b45032a8fb6a394f10533f6a5c888ec9b162110c880b1893b61fa417b876c13
+                  13c109eed1883560383ae83400219d0119d225635dd6ef26b5e586cbc8d7f96e
+                  245f427f845d75e9a4a1b38a3f8763c096c4a8d1a9aac7de39edc18077d6649f
+                  6f705ea95382ebb731b1fcb4fa38af172858a7e8dfdf86424e1d917624971806
+                  25ddb0ab9f5f74b3a23ee20a917c82c78886c779eac5bd01493ab956af2c988e
+                  c4bd6ae9aa142052ba048840994c35bbe7339719b6fabefc8f3b2aeed18cfbb0
+                  a4e82df4fc8f279e695c954a2fa3433ecf272f6f6903b2768e2975c121eb68cd
+                  986ecf0708b9c2f586e91a8f90f14f3eb54e531bc7b2feea3265b962885b21fd
+                  384e13224569fabfb6977edf12b3c97d91b77c09b2137430
+Actual ciphertext length: 664 bytes (83 blocks)
+
+Decrypted text: This is a detailed IDEA (International Data Encryption Algorithm) example that showcases how this patented Swiss algorithm handles multi-block encryption. IDEA was developed by James Massey and Xuejia Lai in 1991 and became famous for its use in Pretty Good Privacy (PGP). It uses 64-bit blocks with 128-bit keys and was considered very secure for its time. The algorithm combines different mathematical operations including XOR, addition modulo 2^16, and multiplication modulo 2^16+1 to create confusion and diffusion. While IDEA is still cryptographically strong, it has been largely replaced by AES due to patent restrictions and performance considerations!
+Decrypted length: 660 bytes
+
+✓ Encryption/Decryption successful!
+
+=== Detailed Block and Padding Explanation ===
+
+Block Breakdown (first 6 blocks shown):
+Block 01 [bytes 000-007]: "This is "
+Block 02 [bytes 008-015]: "a detail"
+Block 03 [bytes 016-023]: "ed IDEA "
+Block 04 [bytes 024-031]: "(Interna"
+Block 05 [bytes 032-039]: "tional D"
+Block 06 [bytes 040-047]: "ata Encr"
+... (77 more blocks)
+Block 83 [bytes 656-659]: "ons!" + 4 padding bytes
+
+=== PKCS#7 Padding Explanation ===
+• Block size: 8 bytes (64 bits)
+• Text length: 660 bytes
+• Bytes in last block: 4 bytes
+• Padding needed: 4 bytes
+• PKCS#7 padding value: 0x04 (repeated 4 times)
+
+=== PKCS#7 Padding Demonstration ===
+Last block content (before padding):
+Bytes: 'o' 'n' 's' '!' 
+Hex:   0x6f 0x6e 0x73 0x21 
+
+Padding added:
+Padding bytes needed: 4
+Padding value: 0x04 (decimal 4)
+
+Complete last block after padding:
+Position: 00 01 02 03 04 05 06 07 
+Content:   o  n  s  ! 04 04 04 04 
+Hex:      6f 6e 73 21 04 04 04 04 
+
+=== CBC Mode Chaining ===
+• Block 1: PlainBlock₁ ⊕ IV → Encrypt → CipherBlock₁
+• Block 2: PlainBlock₂ ⊕ CipherBlock₁ → Encrypt → CipherBlock₂
+• Block 3: PlainBlock₃ ⊕ CipherBlock₂ → Encrypt → CipherBlock₃
+• ... and so on for all 83 blocks
+
+=== IDEA Algorithm Details ===
+• IDEA uses three different operations for confusion and diffusion:
+  - XOR (⊕): Bitwise exclusive OR
+  - Addition modulo 2^16: Integer addition with wraparound
+  - Multiplication modulo 2^16+1: Multiplication in finite field
+• 8.5 rounds of encryption (8 full rounds + 1 output transformation)
+• Key schedule generates 52 subkeys from the 128-bit master key
+
+=== Key Observations ===
+• IDEA uses 64-bit (8-byte) blocks, same as CAST5 and Blowfish
+• Fixed 128-bit key size (unlike Blowfish's variable length)
+• Text longer than 8 bytes is automatically split into multiple blocks
+• Each 8-byte block is encrypted separately but chained together in CBC mode
+• PKCS#7 padding ensures the last block is exactly 8 bytes
+• Ciphertext length is always a multiple of the block size (8 bytes)
+• Original text length: 660 bytes → Encrypted length: 664 bytes
+
+=== Historical Significance ===
+• Developed in Switzerland (ETH Zurich) by Massey and Lai (1991)
+• Used in PGP (Pretty Good Privacy) for many years
+• Was patent-protected until 2012 (limited adoption)
+• Considered very secure but replaced by AES due to patents and performance
+• Legacy algorithm, requires legacy provider in modern OpenSSL

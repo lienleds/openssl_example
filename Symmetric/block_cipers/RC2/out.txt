@@ -1,0 +1,113 @@
+=== RC2-CBC Multi-Block Encryption Example ===
+Original text: This is a comprehensive RC2 (Rivest Cipher 2) encryption example that demonstrates this RSA Data Security algorithm. RC2 was designed by Ron Rivest in 1987 as a proprietary cipher for RSA Data Security, but was later reverse-engineered and published. The algorithm features variable-length keys from 8 to 1024 bits and uses 64-bit blocks with 18 rounds of encryption. RC2 was widely used in various applications including Microsoft's CryptoAPI and was specified in RFC 2268. Unlike some other ciphers, RC2 includes an 'effective key length' parameter that can artificially limit security for export compliance. While RC2 served its purpose in the 1990s, it has been superseded by more modern algorithms like AES due to security and performance considerations!
+Text length: 759 bytes
+
+=== Block Analysis ===
+RC2 block size: 64 bits (8 bytes)
+Number of complete blocks: 94
+Remaining bytes in last block: 7
+Total blocks after padding: 95
+Expected ciphertext length: 760 bytes
+
+Key (hex): c3f4bc86856c2a77b6c9077855f18f56
+IV (hex): 41a59836a9096870
+Ciphertext (hex): 75f8cf210852e39fa42501864964344e9324c5b8b696e4dfeaa7e325d7811b66
+                  107caed195d5e1975b9cb233eee40e319f3d838ae0453980b02c763f5c153ee0
+                  8b2bef794e489dc6d453c196310dc22b04f6a8705392f6f1d80e268470e675e3
+                  6a2f33bb78820a2d9c2164cb48b85e5f46c61055f1ebd6a9f2c0881c09b52489
+                  fd3dd095fe1f5db2d5eca3a317069c3fe6b1ba8942913655658a981e5b8ab672
+                  9f9759664ffcdd7f10ff1889279a8e0f64844d8c01fb28da8e41b92a06f8cf18
+                  233f2f3ce17ad5f63853c3ae76294c30cbfe97b9b4dc672b455c6a24ef5bf3d5
+                  a6adb82446fea8ed9d73cddb7fcb696c900047936d5c44e782a61d8efde80dc9
+                  1cb5e031ea581a3a7e6a79eaab552825a99c2d509caec39ac0e1fe58a753730f
+                  e4ff4c9c08cb18e435d818a54915bfe1c531d4b9f60e31a80fe4da4d979d49f0
+                  70be3c34c52d4817217b98d6629a6369b21b65c7d065efe39a5eb5a78997daca
+                  2a1a653ffa108dfb91c188d9c2e2261f5be4bfde60b575f74d59df3df4e0eee3
+                  26577e711b2b794794f96d766ae11850ef4cff1caac8a684a2da13d220ee2470
+                  f916245f9caf936334fba6b43bc15d52c4ee12d163701aa83e9890a6f738fae9
+                  8b5419160c8869c0e1108dfdc6aa8ad625f161935391234b294dd6d1ece2367b
+                  04f982f660e40a7aa76a0cc1f825f4358e7fc0bd139fb4c0b6f4b9314110dfca
+                  4f83e3431427b7c209779543bef704e66227e2f8d1c8e6b4d12252ece1091573
+                  7cb163f1b79efc9cbebd8ba0c2e4e4393b8fac026acdbfaa76d65423b6494aeb
+                  e300d863410efbebf172e538a538b157dc8be60a9a4c75c2b937b1197c6b8083
+                  8a3cee2caad213c1948a194aa5b2ce748eb53da0710e04fdaeb56a552c9b257f
+                  89b0f60c8d9b9fe74e656454aa3cf02a7a9568b515303f926703f3bde45b5096
+                  612ed7fdf79f959e03918e2f9dfe8e972d39fdcebb6c30aaa0e57bc9a48f9750
+                  534a55af4fac1154ebd95c5457d7d0c4c1042230dc39f1e9083aaa621ffa50b4
+                  ee90b4e58a322b5af1454ff19e725510f3d58523d303ff0f
+Actual ciphertext length: 760 bytes (95 blocks)
+
+Decrypted text: This is a comprehensive RC2 (Rivest Cipher 2) encryption example that demonstrates this RSA Data Security algorithm. RC2 was designed by Ron Rivest in 1987 as a proprietary cipher for RSA Data Security, but was later reverse-engineered and published. The algorithm features variable-length keys from 8 to 1024 bits and uses 64-bit blocks with 18 rounds of encryption. RC2 was widely used in various applications including Microsoft's CryptoAPI and was specified in RFC 2268. Unlike some other ciphers, RC2 includes an 'effective key length' parameter that can artificially limit security for export compliance. While RC2 served its purpose in the 1990s, it has been superseded by more modern algorithms like AES due to security and performance considerations!
+Decrypted length: 759 bytes
+
+✓ Encryption/Decryption successful!
+
+=== Detailed Block and Padding Explanation ===
+
+Block Breakdown (first 6 blocks shown):
+Block 01 [bytes 000-007]: "This is "
+Block 02 [bytes 008-015]: "a compre"
+Block 03 [bytes 016-023]: "hensive "
+Block 04 [bytes 024-031]: "RC2 (Riv"
+Block 05 [bytes 032-039]: "est Ciph"
+Block 06 [bytes 040-047]: "er 2) en"
+... (89 more blocks)
+Block 95 [bytes 752-758]: "ations!" + 1 padding bytes
+
+=== PKCS#7 Padding Explanation ===
+• Block size: 8 bytes (64 bits)
+• Text length: 759 bytes
+• Bytes in last block: 7 bytes
+• Padding needed: 1 bytes
+• PKCS#7 padding value: 0x01 (repeated 1 times)
+
+=== PKCS#7 Padding Demonstration ===
+Last block content (before padding):
+Bytes: 'a' 't' 'i' 'o' 'n' 's' '!' 
+Hex:   0x61 0x74 0x69 0x6f 0x6e 0x73 0x21 
+
+Padding added:
+Padding bytes needed: 1
+Padding value: 0x01 (decimal 1)
+
+Complete last block after padding:
+Position: 00 01 02 03 04 05 06 07 
+Content:   a  t  i  o  n  s  ! 01 
+Hex:      61 74 69 6f 6e 73 21 01 
+
+=== CBC Mode Chaining ===
+• Block 1: PlainBlock₁ ⊕ IV → Encrypt → CipherBlock₁
+• Block 2: PlainBlock₂ ⊕ CipherBlock₁ → Encrypt → CipherBlock₂
+• Block 3: PlainBlock₃ ⊕ CipherBlock₂ → Encrypt → CipherBlock₃
+• ... and so on for all 95 blocks
+
+=== RC2 Algorithm Details ===
+• RC2 uses 18 rounds of encryption with 64-bit blocks
+• Variable key length from 8 to 1024 bits (this example uses 128 bits)
+• Key expansion creates 64 16-bit subkeys from the master key
+• Features 'effective key length' parameter for export compliance
+• Uses simple operations: XOR, addition, rotation, and table lookup
+• Designed to be fast in software implementations
+
+=== Key Observations ===
+• RC2 uses 64-bit (8-byte) blocks, same as CAST5, IDEA, and Blowfish
+• Variable key length (8-1024 bits) offers flexibility
+• Text longer than 8 bytes is automatically split into multiple blocks
+• Each 8-byte block is encrypted separately but chained together in CBC mode
+• PKCS#7 padding ensures the last block is exactly 8 bytes
+• Ciphertext length is always a multiple of the block size (8 bytes)
+• Original text length: 759 bytes → Encrypted length: 760 bytes
+
+=== Historical Context ===
+• Developed by Ron Rivest at RSA Data Security (1987)
+• Originally proprietary, later reverse-engineered and published
+• Widely used in Microsoft CryptoAPI and other applications
+• RFC 2268 standardized the algorithm in 1998
+• Export restrictions influenced design (effective key length parameter)
+• Legacy algorithm, requires legacy provider in modern OpenSSL
+
+=== Export Compliance Feature ===
+• RC2 includes 'effective key length' to comply with export restrictions
+• This parameter artificially limits security even with longer keys
+• Allowed wider distribution while satisfying 1990s export controls
+• Example: 128-bit key with 40-bit effective length for export compliance

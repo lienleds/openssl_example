@@ -1,0 +1,65 @@
+=== Camellia-128-CBC Multi-Block Encryption Example ===
+Original text: This is a very long Camellia encryption example that is much longer than 128 bits (16 bytes). Block ciphers like Camellia work on fixed-size blocks of 128 bits each. When the plaintext is longer than one block, it gets divided into multiple blocks. In CBC mode, each block is XORed with the previous ciphertext block before encryption, creating a chain effect. This is why it's called Cipher Block Chaining!
+Text length: 407 bytes
+
+=== Block Analysis ===
+Camellia block size: 128 bits (16 bytes)
+Number of complete blocks: 25
+Remaining bytes in last block: 7
+Total blocks after padding: 26
+Expected ciphertext length: 416 bytes
+
+Key (hex): 3d376fe4d364d61420486c03d33b4dea
+IV (hex): d4d8031771e7f46189bc81f57ac2209e
+Ciphertext (hex): 635d42e714ce109bb351ddcc9fcfeac6e7ea035894111fd9c49431fc12b761676f9bcbd4983d773c8d6dabace58c6f67d21c3dac62070a3809f2ccfffc57dc24f74dbac4f85bd05df8a894fecb0ae41fe2b1c62919c690c8169cde026652c1678657f971809e7f6d6fa7236091c899d36364658c33bacaf8476c9b6a23acf59d80bbdb75312825924fc43ca6d3624b4799fab450f236400d8f806b114a151e154c52879ebc2b9efe979b461533b835e598bf8ab3af794ee9030fec0b28d83ce7f02bd42a8d18c82399bebb1d243b67fecd83aa1f8e2b03706fa0266c4be8fc0da7f0b971ddb5d915e16a92099c7764a443dfbdc20d9637c290adbdad31e26218669542c8c8935a3586a2a1be0250e2fffeda724a0fd000901564de51de9e09db32e36bcdd3a2138ef0eebcac8772246eb9b68f603596ecbe3ba43003ba14a32a59064a51e72b40939b6c4778ad0d49b104e8c3308e3fc274ecae832dd56ddc73e41008721c86dbc789650ebed9d6b5858d556017f96e96eb48a815aabe6b0ecd6470f0b98741619c2a9d07101fcd417ccb3d146f6c1df240d287ad0bc6b63a83
+Actual ciphertext length: 416 bytes (26 blocks)
+
+Decrypted text: This is a very long Camellia encryption example that is much longer than 128 bits (16 bytes). Block ciphers like Camellia work on fixed-size blocks of 128 bits each. When the plaintext is longer than one block, it gets divided into multiple blocks. In CBC mode, each block is XORed with the previous ciphertext block before encryption, creating a chain effect. This is why it's called Cipher Block Chaining!
+Decrypted length: 407 bytes
+
+✓ Encryption/Decryption successful!
+
+=== Detailed Block and Padding Explanation ===
+
+Block Breakdown (first 5 blocks shown):
+Block 01 [bytes 000-015]: "This is a very l"
+Block 02 [bytes 016-031]: "ong Camellia enc"
+Block 03 [bytes 032-047]: "ryption example "
+Block 04 [bytes 048-063]: "that is much lon"
+Block 05 [bytes 064-079]: "ger than 128 bit"
+... (21 more blocks)
+Block 26 [bytes 400-406]: "aining!" + 9 padding bytes
+
+=== PKCS#7 Padding Explanation ===
+• Block size: 16 bytes (128 bits)
+• Text length: 407 bytes
+• Bytes in last block: 7 bytes
+• Padding needed: 9 bytes
+• PKCS#7 padding value: 0x09 (repeated 9 times)
+
+=== PKCS#7 Padding Demonstration ===
+Last block content (before padding):
+Bytes: 'a' 'i' 'n' 'i' 'n' 'g' '!' 
+Hex:   0x0a 0x0i 0x0n 0x0i 0x0n 0x0g 0x0! 
+
+Padding added:
+Padding bytes needed: 9
+Padding value: 0x09 (decimal 9)
+
+Complete last block after padding:
+Position: 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 
+Content:   a  i  n  i  n  g  ! 09 09 09 09 09 09 09 09 09 
+Hex:      0a 0i 0n 0i 0n 0g 0! 09 09 09 09 09 09 09 09 09 
+
+=== CBC Mode Chaining ===
+• Block 1: PlainBlock₁ ⊕ IV → Encrypt → CipherBlock₁
+• Block 2: PlainBlock₂ ⊕ CipherBlock₁ → Encrypt → CipherBlock₂
+• Block 3: PlainBlock₃ ⊕ CipherBlock₂ → Encrypt → CipherBlock₃
+• ... and so on for all 26 blocks
+
+=== Key Observations ===
+• Text longer than 16 bytes is automatically split into multiple blocks
+• Each 16-byte block is encrypted separately but chained together in CBC mode
+• PKCS#7 padding ensures the last block is exactly 16 bytes
+• Ciphertext length is always a multiple of the block size (16 bytes)
+• Original text length: 407 bytes → Encrypted length: 416 bytes
