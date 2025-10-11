@@ -1,0 +1,38 @@
+=== Secure Password Handling Example ===
+Using PBKDF2-SHA256 with 100000 iterations
+Salt: 256 bits | Hash: 256 bits
+
+--- User Registration ---
+✅ User registered: alice
+✅ User registered: bob
+❌ User already exists: alice
+
+--- User Info: alice ---
+Salt (32 bytes): 6e267eabc71e5e8422f9996ca643270a...
+Hash (20 bytes): 44511572342ea53d4d5de6deeba8267a...
+Iterations: 100000
+
+--- Login Attempts ---
+✅ Login successful: alice
+❌ Invalid password for: alice
+✅ Login successful: bob
+❌ User not found: charlie
+
+--- Performance Comparison ---
+100K iterations: 12ms
+200K iterations: 23ms
+Note: Aim for ~100ms on your target hardware
+
+--- Security Features ---
+Same password hashed twice:
+Hash 1 (first 16 bytes): f6b070c1f28906fe6019b893a082d8d3
+Hash 2 (first 16 bytes): 81755c92aaf97a2cf9111413955648b4
+✅ Different hashes due to unique salts
+
+=== Key Security Principles Demonstrated ===
+✅ Unique salt per password (prevents rainbow tables)
+✅ High iteration count (slows down brute force)
+✅ Constant-time comparison (prevents timing attacks)
+✅ Cryptographically secure random salt generation
+✅ No plaintext password storage
+✅ Configurable cost parameter for future-proofing
